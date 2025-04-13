@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Colorized Result</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col items-center justify-center px-4 py-10">
+    <h1 class="text-3xl font-bold mb-6">Colorized Satellite Image</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+        <div>
+            <h2 class="text-xl mb-2">Original</h2>
+            <img src="{{ url_for('static', filename='uploads/' + original_image) }}" class="rounded-xl shadow-lg border border-gray-600">
+        </div>
+        <div>
+            <h2 class="text-xl mb-2">Colorized</h2>
+            <img src="{{ url_for('static', filename='outputs/' + colorized_image) }}" class="rounded-xl shadow-lg border border-green-500">
+        </div>
+    </div>
+
+    <a href="{{ url_for('download_file', folder='outputs', filename=colorized_image) }}"
+       class="mt-8 inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg transition">
+        Download Colorized Image
+    </a>
+
+    <a href="/segment"
+       class="mt-4 inline-block bg-white/20 border border-white text-white font-bold py-2 px-6 rounded-lg hover:bg-white/30 transition">
+        Segment Colorized Image
+    </a>
+</body>
+</html>

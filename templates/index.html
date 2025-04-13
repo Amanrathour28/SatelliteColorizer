@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>colourIT - Satellite Image Colorization</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        font-family: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+    
+  </style>
+</head>
+
+<body class="relative text-white font-sans">
+
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-[-1]">
+    <source src="{{ url_for('static', filename='videos/landing_page.mp4') }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Overlay -->
+  <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-0"></div>
+
+  <!-- Landing Content -->
+  <div class="relative z-10 flex flex-col items-center justify-center h-screen text-center px-4">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+      From Greyscale to Green
+    </h1>
+    <p class="text-lg sm:text-xl md:text-2xl max-w-2xl mb-6">
+      Colorize satellite images with AI precision.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a href="#upload" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition">
+        Upload Your Image
+      </a>
+      <a href="#learn" class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-semibold py-3 px-6 rounded-lg border border-white transition">
+        Learn How It Works
+      </a>
+    </div>
+  </div>
+<!-- Upload Section -->
+<section id="upload" class="relative py-20 px-4 sm:px-10 bg-[#0b1d14] text-white scroll-mt-20">
+    <div class="max-w-3xl mx-auto text-center p-10 rounded-xl bg-black/50 shadow-2xl border border-white/10 backdrop-blur-md animate-fadeIn">
+      <h2 class="text-4xl font-bold mb-4">Upload Satellite Image</h2>
+      <p class="mb-6 text-lg text-white/80">Choose a Sentinel-1 or Sentinel-2 grayscale image to begin colorization.</p>
+      
+      <form action="/upload" method="POST" enctype="multipart/form-data" class="bg-black/30 p-6 rounded-xl shadow-inner border border-white/10">
+        <input type="file" name="image" accept="image/*" required 
+               class="mb-4 w-full p-3 rounded-lg border border-gray-500 text-white bg-[#1b2b22] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500">
+        <button type="submit" 
+                class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition transform hover:scale-105 duration-300 shadow-md">
+          Upload & Colorize
+        </button>
+      </form>
+    </div>
+  </section>
+  
+  <!-- Learn How It Works Section -->
+  <section id="learn" class="relative py-20 px-4 sm:px-10 bg-white text-black scroll-mt-20">
+    <div class="max-w-5xl mx-auto text-center p-10 rounded-xl bg-black/50 shadow-2xl border border-white/10 backdrop-blur-md animate-fadeIn">
+      <h2 class="text-4xl font-bold mb-6">How It Works</h2>
+      <p class="text-lg mb-12 text-white/80">A simple 3-step process powered by AI to colorize your grayscale satellite images.</p>
+  
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="bg-black/40 rounded-xl p-6 border border-white/10 shadow-md hover:shadow-xl transition duration-300 hover:scale-105">
+          <h3 class="text-xl font-semibold mb-2 text-green-400">1. Upload Image</h3>
+          <p class="text-white/70">Choose a Sentinel-1 or Sentinel-2 grayscale satellite image.</p>
+        </div>
+  
+        <div class="bg-black/40 rounded-xl p-6 border border-white/10 shadow-md hover:shadow-xl transition duration-300 hover:scale-105">
+          <h3 class="text-xl font-semibold mb-2 text-green-400">2. AI Colorization</h3>
+          <p class="text-white/70">Our AI model processes the image and restores realistic color tones.</p>
+        </div>
+  
+        <div class="bg-black/40 rounded-xl p-6 border border-white/10 shadow-md hover:shadow-xl transition duration-300 hover:scale-105">
+          <h3 class="text-xl font-semibold mb-2 text-green-400">3. Analyze & Download</h3>
+          <p class="text-white/70">View, analyze, or download your colorized satellite image instantly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  
+
+</body>
+</html>
